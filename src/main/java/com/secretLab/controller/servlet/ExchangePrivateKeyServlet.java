@@ -18,7 +18,6 @@ public class ExchangePrivateKeyServlet extends HttpServlet {
     HttpSession session = req.getSession();
     String symmetricKeyInformationJson = req.getParameter(SYMMETRIC_KEY_INFORMATION);
     if(symmetricKeyInformationJson!=null){
-      System.out.println(symmetricKeyInformationJson);
       JSONObject jsonObject = JSONObject.parseObject(symmetricKeyInformationJson);
       String secretKey = jsonObject.getString("secretKey");
       String iv = jsonObject.getString("iv");
