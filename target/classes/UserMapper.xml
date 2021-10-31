@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.secretLab.dao.AccountDao">
+
+  <select id="getAccounts" resultType="com.secretLab.pojo.Account">
+    select * from virtualbank.account
+  </select>
+
+  <select id="getAccountByPhoneNumber" parameterType="String" resultType="com.secretLab.pojo.Account">
+    select * from virtualbank.account where phoneNumber = #{phoneNumber}
+  </select>
+
+  <insert id="insertAccount" parameterType="com.secretLab.pojo.Account">
+    insert into virtualbank.account (userName,password,salt,phoneNumber, balance) values (#{userName},#{password},#{salt},#{phoneNumber}, #{balance});
+  </insert>
+
+  <update id="updateAccount" parameterType="com.secretLab.pojo.Account">
+    update virtualbank.account
+    set  userName = #{userName}
+    where phoneNumber = #{phoneNumber};
+  </update>
+
+  <delete id="deleteAccount" parameterType="String">
+    delete from virtualbank.account where phoneNumber = #{phoneNumber}
+  </delete>
+</mapper>

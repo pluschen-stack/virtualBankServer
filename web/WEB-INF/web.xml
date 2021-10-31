@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+  <filter>
+    <filter-name>CharacterEncodingFilter</filter-name>
+    <filter-class>com.secretLab.controller.filter.CharacterEncodingFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>CharacterEncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <servlet>
+    <servlet-name>RegisterServlet</servlet-name>
+    <servlet-class>com.secretLab.controller.servlet.RegisterServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RegisterServlet</servlet-name>
+    <url-pattern>/RegisterServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>com.secretLab.controller.servlet.LoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/LoginServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>CAServlet</servlet-name>
+    <servlet-class>com.secretLab.controller.servlet.CAServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CAServlet</servlet-name>
+    <url-pattern>/CAServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ExchangePrivateKeyServlet</servlet-name>
+    <servlet-class>com.secretLab.controller.servlet.ExchangePrivateKeyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ExchangePrivateKeyServlet</servlet-name>
+    <url-pattern>/ExchangePrivateKeyServlet</url-pattern>
+  </servlet-mapping>
+
+  <!--设置Session默认的失效时间-->
+  <session-config>
+    <!--60分钟后Session自动失效，以分钟为单位-->
+    <session-timeout>60</session-timeout>
+  </session-config>
+</web-app>
