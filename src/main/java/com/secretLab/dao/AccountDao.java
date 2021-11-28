@@ -2,6 +2,8 @@ package com.secretLab.dao;
 
 import com.secretLab.pojo.Account;
 import java.util.List;
+import java.util.Map;
+import org.apache.ibatis.annotations.Param;
 
 public interface AccountDao {
 
@@ -24,12 +26,17 @@ public interface AccountDao {
   void insertAccount(Account account);
 
   /**
-   * 更新一个用户
-   */
-  void updateAccount(Account account);
-
-  /**
    * 删除用户
    */
   void deleteAccount(String phoneNumber);
+
+  /**
+   * 修改用户名
+   */
+  void updateAccountName(@Param("phoneNumber") String phoneNumber,@Param("userName") String userName);
+
+  /**
+   * 修改余额
+   */
+  void updateAccountBalance(@Param("phoneNumber") String phoneNumber,@Param("balance") String balance);
 }

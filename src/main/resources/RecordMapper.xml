@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.secretLab.dao.RecordDao">
+  <select id="getRecords" resultType="com.secretLab.pojo.Record" parameterType="String">
+    select * from virtualbank.record where srcPhoneNumber = #{phoneNumber} OR destPhoneNumber = #{phoneNumber}
+  </select>
+
+  <insert id="addRecord">
+    insert into virtualbank.record (srcPhoneNumber,destPhoneNumber,amount,time) values (#{srcPhoneNumber},#{destPhoneNumber},#{amount},#{time});
+  </insert>
+
+</mapper>

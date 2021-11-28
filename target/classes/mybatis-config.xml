@@ -15,6 +15,8 @@
     </environment>
   </environments>
   <mappers>
-    <mapper resource="UserMapper.xml"></mapper>
+    <mapper resource="UserMapper.xml"/>
+    <mapper resource="RecordMapper.xml"/>
   </mappers>
+
 </configuration>

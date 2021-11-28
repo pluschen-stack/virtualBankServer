@@ -49,6 +49,33 @@
     <url-pattern>/ExchangePrivateKeyServlet</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>QueryRecordsServlet</servlet-name>
+    <servlet-class>com.secretLab.controller.servlet.QueryRecordsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>QueryRecordsServlet</servlet-name>
+    <url-pattern>/QueryRecordsServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>TransferServlet</servlet-name>
+    <servlet-class>com.secretLab.controller.servlet.TransferServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TransferServlet</servlet-name>
+    <url-pattern>/TransferServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>QueryBalanceServlet</servlet-name>
+    <servlet-class>com.secretLab.controller.servlet.QueryBalanceServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>QueryBalanceServlet</servlet-name>
+    <url-pattern>/QueryBalanceServlet</url-pattern>
+  </servlet-mapping>
+
   <!--设置Session默认的失效时间-->
   <session-config>
     <!--60分钟后Session自动失效，以分钟为单位-->

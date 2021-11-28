@@ -16,9 +16,15 @@
     insert into virtualbank.account (userName,password,salt,phoneNumber, balance) values (#{userName},#{password},#{salt},#{phoneNumber}, #{balance});
   </insert>
 
-  <update id="updateAccount" parameterType="com.secretLab.pojo.Account">
+  <update id="updateAccountName" parameterType="com.secretLab.pojo.Account">
     update virtualbank.account
     set  userName = #{userName}
+    where phoneNumber = #{phoneNumber};
+  </update>
+
+  <update id="updateAccountBalance">
+    update virtualbank.account
+    set  balance = #{balance}
     where phoneNumber = #{phoneNumber};
   </update>
 
