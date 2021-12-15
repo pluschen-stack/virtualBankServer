@@ -6,15 +6,19 @@ public class Account {
   private String password;//hash与加盐加密后的密码
   private String salt;//盐值
   private String phoneNumber;//用来作主键，并且登录就靠它了
-  private int balance;//余额
+  private double balance;//余额
+  private int payPassword;//支付口令
+  private String CASeqNum;
 
-  public Account(String userName, String password, String salt,
-      String phoneNumber, int balance) {
+  public Account(String userName, String password, String salt, String phoneNumber, double balance,
+      int payPassword, String CASeqNum) {
     this.userName = userName;
     this.password = password;
     this.salt = salt;
     this.phoneNumber = phoneNumber;
     this.balance = balance;
+    this.payPassword = payPassword;
+    this.CASeqNum = CASeqNum;
   }
 
   public String getSalt() {
@@ -49,11 +53,11 @@ public class Account {
     this.phoneNumber = phoneNumber;
   }
 
-  public int getBalance() {
+  public double getBalance() {
     return balance;
   }
 
-  public void setBalance(int balance) {
+  public void setBalance(double balance) {
     this.balance = balance;
   }
 
@@ -65,6 +69,8 @@ public class Account {
         ", salt='" + salt + '\'' +
         ", phoneNumber='" + phoneNumber + '\'' +
         ", balance=" + balance +
+        ", payPassword=" + payPassword +
+        ", CASeqNum='" + CASeqNum + '\'' +
         '}';
   }
 }

@@ -3,6 +3,7 @@ package com.secretLab.controller.servlet;
 import static com.secretLab.utils.NetWorkConstant.SYMMETRIC_KEY_INFORMATION;
 
 import com.alibaba.fastjson.JSONObject;
+import com.secretLab.utils.MacUtil;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,12 +18,15 @@ public class ExchangePrivateKeyServlet extends HttpServlet {
       throws ServletException, IOException {
     HttpSession session = req.getSession();
     String symmetricKeyInformationJson = req.getParameter(SYMMETRIC_KEY_INFORMATION);
+
     if(symmetricKeyInformationJson!=null){
       JSONObject jsonObject = JSONObject.parseObject(symmetricKeyInformationJson);
       String secretKey = jsonObject.getString("secretKey");
       String iv = jsonObject.getString("iv");
+      String secretMacKey = jsonObject.getString("secretMacKey");
       session.setAttribute("secretKey",secretKey);
       session.setAttribute("iv",iv);
+      session.setAttribute("secretMacKey",secretMacKey);
       resp.getWriter().write("OK");
     }
   }

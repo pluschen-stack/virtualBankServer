@@ -85,15 +85,4 @@ public class AESUtil {
       return null;
     }
   }
-
-  public static void main(String[] args) {
-    String secretKey = createSecretKey();
-    String iv = createIV(AES_IV_LENGTH);
-    String s = encrypt("格物楼里的教室好吵，是谁在装修啊啊", secretKey, iv);
-    System.out.println(s);
-    System.out.println(decrypt(s,secretKey,iv));
-    s = encrypt("格物楼里的教室好吵，是谁在装修啊啊", secretKey, iv);
-    System.out.println(s);
-    System.out.println(decrypt(s,secretKey,iv));
-  }
 }

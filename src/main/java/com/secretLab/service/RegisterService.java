@@ -5,7 +5,7 @@ import static com.secretLab.utils.Constant.SALT_LENGTH;
 
 import com.secretLab.dao.AccountDao;
 import com.secretLab.pojo.Account;
-import com.secretLab.utils.Mac;
+import com.secretLab.utils.MacUtil;
 import com.secretLab.utils.MybatisUtils;
 import java.security.NoSuchAlgorithmException;
 import org.apache.ibatis.session.SqlSession;
@@ -21,17 +21,17 @@ public class RegisterService {
    * @param password hash后的密码
    * @return 如果成功注册就返回true,否则返回false
    */
-  public static boolean register(String phoneNumber,String password)  {
+  public static boolean register(String phoneNumber,String password,String accountName,String payPassword)  {
     if(phoneNumber == null || password == null){
       return false;
     }
     boolean registerFlag = false;
     try(SqlSession sqlSession = MybatisUtils.getSqlSession()){
-      String salt = Mac.generateSalt(SALT_LENGTH);
-      password = Mac.digest(password+salt,HASH_ALGORITHM);
+      String salt = MacUtil.generateSalt(SALT_LENGTH);
+      password = MacUtil.digest(password+salt,HASH_ALGORITHM);
       AccountDao mapper = sqlSession.getMapper(AccountDao.class);
       if(mapper.getAccountByPhoneNumber(phoneNumber)==null){
-        mapper.insertAccount(new Account("自定义用户名",password,salt,phoneNumber,0));
+        mapper.insertAccount(new Account(accountName,password,salt,phoneNumber,0,Integer.parseInt(payPassword),"0"));
         sqlSession.commit();
         registerFlag = true;
       }
@@ -44,10 +44,6 @@ public class RegisterService {
 
 
   public static void main(String[] args) throws NoSuchAlgorithmException {
-    if(register("12345678901",Mac.digest("123456",HASH_ALGORITHM))){
-      System.out.println("注册成功");
-    }else{
-      System.out.println("注册失败");
-    }
+
   }
 }

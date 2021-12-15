@@ -4,7 +4,7 @@ import static com.secretLab.utils.Constant.HASH_ALGORITHM;
 
 import com.secretLab.dao.AccountDao;
 import com.secretLab.pojo.Account;
-import com.secretLab.utils.Mac;
+import com.secretLab.utils.MacUtil;
 import com.secretLab.utils.MybatisUtils;
 import java.security.NoSuchAlgorithmException;
 import org.apache.ibatis.session.SqlSession;
@@ -27,7 +27,7 @@ public class LoginService {
       Account account = mapper.getAccountByPhoneNumber(phoneNumber);
       if(account != null){
         String salt = account.getSalt();
-        if(account.getPassword().equals(Mac.digest(password+salt,HASH_ALGORITHM))){
+        if(account.getPassword().equals(MacUtil.digest(password+salt,HASH_ALGORITHM))){
           LoginFlag = true;
         }
       }
@@ -38,7 +38,7 @@ public class LoginService {
   }
 
   public static void main(String[] args) throws NoSuchAlgorithmException {
-    if(login("12345678901",Mac.digest("123456",HASH_ALGORITHM))){
+    if(login("12345678901", MacUtil.digest("123456",HASH_ALGORITHM))){
       System.out.println("登录成功");
     }else{
       System.out.println("登录失败");

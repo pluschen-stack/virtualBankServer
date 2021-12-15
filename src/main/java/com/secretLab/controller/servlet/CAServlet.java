@@ -1,5 +1,7 @@
 package com.secretLab.controller.servlet;
 
+import static com.secretLab.utils.CertificateUtils.getCA;
+import static com.secretLab.utils.Constant.CA_DIRECTORY;
 import static com.secretLab.utils.NetWorkConstant.CA_LICENSE;
 import static com.secretLab.utils.NetWorkConstant.SESSION_ID;
 
@@ -23,12 +25,11 @@ public class CAServlet extends HttpServlet {
     String sessionId = session.getId();
     if(req.getParameter(CA_LICENSE).equals("NEED")){
       Map<String,String> resMap = new HashMap<>();
-      resMap.put(CA_LICENSE,"ok");
+      resMap.put(CA_LICENSE,getCA(CA_DIRECTORY+"\\root\\bankroot.txt"));
       resp.getWriter().print(JSON.toJSONString(resMap));
       resp.addCookie(new Cookie(SESSION_ID,sessionId));
     }
   }
-
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {

@@ -20,8 +20,10 @@ public class RegisterServlet extends HttpServlet {
     String iv = (String) req.getSession().getAttribute("iv");
     String phoneNumber = AESUtil.decrypt(req.getParameter("phoneNumber"),secretKey,iv);
     String password = AESUtil.decrypt(req.getParameter("password"),secretKey,iv);
+    String accountName = AESUtil.decrypt(req.getParameter("accountName"),secretKey,iv);
+    String payPassword = AESUtil.decrypt(req.getParameter("payPassword"),secretKey,iv);
     Map<String,Boolean> resMap = new HashMap<>();
-    if(RegisterService.register(phoneNumber,password)){
+    if(RegisterService.register(phoneNumber,password,accountName,payPassword)){
       resMap.put("registerFlag",true);
     }else{
       resMap.put("registerFlag",false);

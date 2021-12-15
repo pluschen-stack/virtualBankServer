@@ -13,7 +13,7 @@
   </select>
 
   <insert id="insertAccount" parameterType="com.secretLab.pojo.Account">
-    insert into virtualbank.account (userName,password,salt,phoneNumber, balance) values (#{userName},#{password},#{salt},#{phoneNumber}, #{balance});
+    insert into virtualbank.account (userName,password,salt,phoneNumber,balance,payPassword,CASeqNum) values (#{userName},#{password},#{salt},#{phoneNumber},#{balance},#{payPassword},#{CASeqNum});
   </insert>
 
   <update id="updateAccountName" parameterType="com.secretLab.pojo.Account">

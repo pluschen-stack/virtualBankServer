@@ -1,0 +1,9 @@
+Serial number:3c00c6bbae26b180a838729fdb5b1392bf327ebc
+Sign algorithm:sha1RSA
+Sign Hash algorithm:sha1
+Issuer:RSA CA 2021, HIT Trust, CN
+Valid date from:2021 12 15 11 26 11
+to:2024 12 15 11 26 11
+User:bankserver
+Public key:MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCEWwb-zNVgg7MvCy0criwGxQ0KWKmZbmIQqHWUFCFpAcA8qjdpNU8hmYR7JRHmogpIFaT9yImzYYowxq_XLZpebR8OpG-Im9g1qP4fxCmqchQotFfkovTMfcsCzw_sNZVJaOu2oFzkXE0BWJ1fFMuKN3fRsKijX744ygNcQmcePQIDAQAB
+Sign:f/dFdQH7FeUmF0p02pOv6QtbIiye2PhRVoHM+xWJ2HHBWSVrC1CTjW8SMbpBte7jILXp/LSfjxJvqg5F0u5/hbIvo7ZMUDkuz+x7hUoI/GHjIwVGlcJkemwtGDCt2OlNhM7KJ7dVThPdYyyFYxsrWuLjNYTbmH0fMy4vE3tWryY=

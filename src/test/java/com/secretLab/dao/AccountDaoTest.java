@@ -35,7 +35,7 @@ public class AccountDaoTest {
   public void testInsertAccount(){
     try(SqlSession sqlSession = MybatisUtils.getSqlSession()){
       AccountDao mapper = sqlSession.getMapper(AccountDao.class);
-      mapper.insertAccount(new Account("hejihui","123456","not used","15515596423",36));
+      mapper.insertAccount(new Account("hejihui","123456","not used","15515596423",36,123456,"0"));
       //事务提交
       sqlSession.commit();
     }
