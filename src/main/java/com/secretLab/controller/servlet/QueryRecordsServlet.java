@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.secretLab.pojo.Record;
 import com.secretLab.service.RecordsService;
 import com.secretLab.utils.AESUtil;
+import com.secretLab.utils.MacUtil;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -21,12 +22,22 @@ public class QueryRecordsServlet extends HttpServlet {
       throws ServletException, IOException {
     String secretKey = (String)req.getSession().getAttribute("secretKey");
     String iv = (String) req.getSession().getAttribute("iv");
-    String phoneNumber = AESUtil.decrypt(req.getParameter("phoneNumber"),secretKey,iv);
-    List<Record> records = RecordsService.queryRecords(phoneNumber);
-    Map<String,String> resMap = new HashMap<>();
-    resMap.put("records", JSON.toJSONString(records));
-    resp.getWriter().print(
-        AESUtil.encrypt(JSON.toJSONString(resMap), secretKey, iv));
+    String secretMacKey = (String) req.getSession().getAttribute("secretMacKey");
+    String mac = req.getParameter("mac");
+    String phoneNumberEncrypted = req.getParameter("phoneNumber");
+    try {
+      if(MacUtil.encryptHMAC(phoneNumberEncrypted,secretMacKey).equals(mac)){
+        String phoneNumber = AESUtil.decrypt(phoneNumberEncrypted,secretKey,iv);
+        List<Record> records = RecordsService.queryRecords(phoneNumber);
+        Map<String,String> resMap = new HashMap<>();
+        resMap.put("records", JSON.toJSONString(records));
+        resp.getWriter().print(
+            AESUtil.encrypt(JSON.toJSONString(resMap), secretKey, iv));
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
   }
 
   @Override

@@ -146,11 +146,7 @@ public class RSATools
             System.out.println("decryptr failed");
             e.printStackTrace();
         }
-
         return decodestring;
     }
-
-
-
 }
 
